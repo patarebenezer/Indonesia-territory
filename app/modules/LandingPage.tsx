@@ -29,14 +29,6 @@ export default function LandingPage() {
   option?: { label: string; value: string }
  ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
- const getRegencyDataDetail = useMutation({
-  mutationFn: getRegencyData,
-  onError: (error: AxiosError<ApiResponseError>) => {
-   const messageError = error.response?.data.message;
-   toast.error(messageError, { position: "top-right" });
-  },
- });
-
  const onChangeProvince = (value: string) => {
   getRegencyDataDetail.mutate(value);
   setSelectedProvince(value);
@@ -53,6 +45,14 @@ export default function LandingPage() {
  const onChangeSubDistrict = (value: string) => {
   setSelectedSubDistrict(value);
  };
+
+ const getRegencyDataDetail = useMutation({
+  mutationFn: getRegencyData,
+  onError: (error: AxiosError<ApiResponseError>) => {
+   const messageError = error.response?.data.message;
+   toast.error(messageError, { position: "top-right" });
+  },
+ });
 
  const getSubDistrictDetail = useMutation({
   mutationFn: getSubDistrictData,
