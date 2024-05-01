@@ -1,44 +1,41 @@
 import { axiosClient } from "./utils/axiosClient";
 import { clientEnv } from "../env/client.environment";
 import {
- GetKecamatanResponse,
  GetProvinceResponse,
+ GetRegencyResponse,
+ GetSubDistrictResponse,
 } from "../types/TerritoriesTypes";
 
 export const getProvincesData = async () => {
  try {
   const response = await axiosClient.get<GetProvinceResponse>(
-   `${clientEnv.API_BASE_URL}/provinsi`
+   `${clientEnv.API_BASE_URL}/api/indonesia/province`
   );
   return response.data;
  } catch (error) {
-  console.error("error", error);
   throw error;
  }
 };
 
-export const getKabupatenData = async () => {
+export const getRegencyData = async (id: string) => {
  try {
-  const response = await axiosClient.get<GetProvinceResponse>(
-   `${clientEnv.API_BASE_URL}/kabupaten`
+  const response = await axiosClient.get<GetRegencyResponse>(
+   `${clientEnv.API_BASE_URL}/api/indonesia/regency/${id}`
   );
+
   return response.data;
  } catch (error) {
-  console.error("error", error);
   throw error;
  }
 };
 
-export const getKecamatanData = async (kode?: string) => {
+export const getSubDistrictData = async (id: string) => {
  try {
-  const response = await axiosClient.get<GetKecamatanResponse>(
-   `${clientEnv.API_BASE_URL}/kodepos?namakabupaten=${kode}&page=1&size=510`
+  const response = await axiosClient.get<GetSubDistrictResponse>(
+   `${clientEnv.API_BASE_URL}/api/indonesia/subdistrict/${id}`
   );
-  console.log("kode", kode);
-  console.log("response.data.data", response.data.data);
-  return response.data.data;
+  return response.data;
  } catch (error) {
-  console.error("error", error);
   throw error;
  }
 };

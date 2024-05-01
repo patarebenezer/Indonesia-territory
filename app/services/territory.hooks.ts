@@ -6,16 +6,3 @@ export const useProvincesData = () => {
   ...TerritoryQueries.provinces(),
  });
 };
-
-export const useKabupatenData = () => {
- return useQuery({
-  ...TerritoryQueries.kabupaten(),
- });
-};
-
-export const useKecamatanData = (kode: string) => {
- return useQuery({
-  ...TerritoryQueries.kecamatan(kode),
-  enabled: kode !== "",
- });
-};

@@ -1,26 +1,22 @@
 import { ApiResponseSuccess } from "./api";
 
 export type GetProvinceResponse = ApiResponseSuccess<ProvinceType>;
-export type GetKabupatenResponse = ApiResponseSuccess<KabupatenType>;
-export type GetKecamatanResponse = ApiResponseSuccess<KecamatanType>;
+export type GetRegencyResponse = ApiResponseSuccess<RegencyType>;
+export type GetSubDistrictResponse = ApiResponseSuccess<SubDistrictType[]>;
 
 export type ProvinceType = Partial<{
- kodeprovinsi: string;
- namaprovinsi: string;
+ id: string;
+ name: string;
 }>;
 
-export type KabupatenType = Partial<{
+export type RegencyType = Partial<{
  kodekabupaten: string;
- kodeprovinsi: string;
+ province_id: string;
  namakabupaten: string;
 }>;
 
-export type KecamatanType = Partial<{
- datas: {};
- ID: number;
- KODEPOS: number;
- KELURAHAN: string;
- KECAMATAN: string;
- KABUPATEN: string;
- PROVINSI: string;
+export type SubDistrictType = Partial<{
+ id: string;
+ regency_id?: string;
+ name: string;
 }>;
